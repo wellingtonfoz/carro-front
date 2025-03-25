@@ -1,0 +1,30 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body centralizar">
+          <h2>Cadastro de carro</h2>
+
+
+          <form #formulario="ngForm">
+
+            Nome do carro:<br>
+          <input  [(ngModel)]="carro.nome" type="text" class="form-control" name="nome">
+            <br>
+          Marca:<br>
+          <input   [(ngModel)]="carro.marca" type="text" class="form-control" name="marca">
+            
+            <br />
+            <button (click)="save()"  [disabled]="!formulario.valid" class="btn btn-success">Salvar</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4"></div>
+  </div>
+</div>

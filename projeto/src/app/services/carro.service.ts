@@ -24,8 +24,8 @@ export class CarroService {
   }
 
   findByNome(nome: string): Observable<Carro[]>{
-    let par = new HttpParams();
-    par.set('nome',nome);
+    let par = new HttpParams()
+    .set('nome',nome);
     
     return this.http.get<Carro[]>(this.API+'/findByNome', {params: par});
   }

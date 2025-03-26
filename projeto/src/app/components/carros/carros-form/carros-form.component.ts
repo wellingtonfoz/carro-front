@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Carro } from '../../../models/carro';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,8 @@ import { CarroService } from '../../../services/carro.service';
 })
 export class CarrosFormComponent {
 
-  carro: Carro = new Carro();
+  @Input("carro") carro: Carro = new Carro();
+  @Output("meuEvento") meuEvento = new EventEmitter(); //ELE VAI PEGAR QUALQUER COISA E EMITIR
 
   rotaAtivida = inject(ActivatedRoute);
   roteador = inject(Router);
@@ -47,6 +48,7 @@ export class CarrosFormComponent {
         next: (mensagem) => {
           alert(mensagem);
           this.roteador.navigate(['admin/carros']);
+          this.meuEvento.emit("OK");
         },
         error: (erro) => {
           alert(erro.error)
@@ -60,6 +62,7 @@ export class CarrosFormComponent {
         next: (mensagem) => {
           alert(mensagem);
           this.roteador.navigate(['admin/carros']);
+          this.meuEvento.emit("OK");
         },
         error: (erro) => {
           alert(erro.error)

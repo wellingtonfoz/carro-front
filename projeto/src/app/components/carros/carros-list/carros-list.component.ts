@@ -27,7 +27,7 @@ export class CarrosListComponent {
         this.lista = listaRetornada;
       },
       error: (erro) => {
-        alert('Deu erro!');
+        alert(erro.error)
       }
     });
   
@@ -42,7 +42,7 @@ export class CarrosListComponent {
           this.findAll();
         },
         error: (erro) => {
-          alert('Deu erro!');
+          alert(erro.error)
         }
       });
 

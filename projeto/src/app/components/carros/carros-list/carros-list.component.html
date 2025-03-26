@@ -1,46 +1,56 @@
-
 <br>
 <div class="container">
     <div class="row">
         <div class="col-12 azul">
 
             <div class="card">
-                <div class="card-body alinharDiretira">
-            <h1>Cadastro de carros</h1><br>
-            <a href="admin/carros/new" class="btn btn-primary">Novo</a>
- 
-                <table class="table">
-                    
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NOME</th>
-                        <th scope="col">AÇÕES</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @for (carro of lista; track $index) {
-                        <tr>
-                            <td>{{carro.id}}</td>
-                            <td>{{carro.nome}}</td>
-                            <td class="alinharDiretira"> 
-                                <a href="admin/carros/edit/{{carro.id}}" class="btn btn-primary">Editar</a>
-                                <button (click)="delete(carro)" class="btn btn-danger">Deletar</button>
-                             </td>
-                        </tr>
-                    }
-                   
-                    </tbody>
-                </table>
+                <div class="card-body">
 
+                    <h2> <i class="fas fa-car fa-sm"></i> Cadastro de carros</h2><br>
+                    
+                    <div>
+                        
+                    </div>
+
+                    <div class="alinharADireita">
+                        <a href="admin/carros/new" class="btn btn-success btn-rounded" mdbRippled>
+                            <i class="fas fa-plus fa-sm"></i> Novo
+                        </a>
+                    </div>
+
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (carro of lista; track $index) {
+                            <tr>
+                                <td>{{carro.id}}</td>
+                                <td>{{carro.nome}}</td>
+                                <td class="alinharADireita">
+                                    <a href="admin/carros/edit/{{carro.id}}" class="btn btn-primary btn-rounded"
+                                        mdbRippled>
+                                        <i class="fas fa-pencil fa-sm"></i>
+                                    </a>
+                                    <button (click)="delete(carro)" class="btn btn-danger btn-rounded" mdbRippled>
+                                        <i class="fas fa-trash fa-sm"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        </div>
 
         </div>
     </div>
 </div>
-
-
-
-
-

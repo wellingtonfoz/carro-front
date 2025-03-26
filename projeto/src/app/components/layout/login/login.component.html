@@ -1,34 +1,46 @@
 <div class="container">
-    <div class="row">
-        <div class="col-4">
-            
-        </div>
-        <div class="col-4">
+  <div class="row">
+    <div class="col-3">
 
-            <div class="card">
-                <div class="card-body">
-                    <h2>Autentique-se:</h2>
-
-                    <mdb-form-control>
-                        <input [(ngModel)]="login.username" mdbInput type="text" id="login" class="form-control" />
-                        <label mdbLabel class="form-label" for="login">Username:</label>
-                      </mdb-form-control>
-                    <br>    
-                    <mdb-form-control>
-                        <input (keyup.enter)="logar()" [(ngModel)]="login.password" mdbInput type="text" id="senha" class="form-control" />
-                        <label mdbLabel class="form-label" for="senha">Password:</label>
-                      </mdb-form-control>
-                    <br>  
-
-                    <button (click)="logar()" type="button" class="btn btn-primary" mdbRipple>Entrar</button>
-
-                </div>
-              </div>
-
-              
-        </div>
-        <div class="col-4">
-            
-        </div>
     </div>
+
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body centralizar">
+          <h3>Sistema Xuxa</h3>
+          <img src="imagens/cadeado.png" class="img-thumbnail">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-3">
+
+      <div class="card">
+        <div class="card-body centralizar">
+          <h2>Autentique-se:</h2><br>
+
+          <mdb-form-control>
+            <input [(ngModel)]="login.username" mdbInput type="text" id="login" class="form-control" />
+            <label mdbLabel class="form-label" for="login">Usuário:</label>
+          </mdb-form-control>
+          <br>
+          <mdb-form-control>
+            <input (keyup.enter)="logar()" [(ngModel)]="login.password" mdbInput type="password" id="senha"
+              class="form-control" />
+            <label mdbLabel class="form-label" for="senha">Senha:</label>
+          </mdb-form-control>
+          <br>
+
+          <button (click)="logar()" type="button" class="btn btn-primary" mdbRipple>Entrar</button>
+
+        </div>
+      </div>
+
+    </div>
+   
+    <div class="col-3">
+
+    </div>
+  </div>
 </div>

@@ -34,7 +34,7 @@ export class CarrosFormComponent {
         this.carro = carroRetornado;
       },
       error: (erro) => {
-        alert('Deu erro!');
+        alert(erro.error)
       }
     });
 
@@ -49,7 +49,7 @@ export class CarrosFormComponent {
           this.roteador.navigate(['admin/carros']);
         },
         error: (erro) => {
-          alert('Deu erro!');
+          alert(erro.error)
         }
       });
 
@@ -62,7 +62,7 @@ export class CarrosFormComponent {
           this.roteador.navigate(['admin/carros']);
         },
         error: (erro) => {
-          alert('Deu erro!');
+          alert(erro.error)
         }
       });
 

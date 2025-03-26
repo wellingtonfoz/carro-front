@@ -1,0 +1,56 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 azul">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h2> <i class="fas fa-archive fa-sm"></i> Cadastro de Acessórios</h2><br>
+                    
+                    <div>
+                        
+                    </div>
+
+                    <div class="alinharADireita">
+                        <a href="admin/acessorios/new" class="btn btn-success btn-rounded" mdbRippled>
+                            <i class="fas fa-plus fa-sm"></i> Novo
+                        </a>
+                    </div>
+
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col alinharADireita">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (acessorio of lista; track $index) {
+                            <tr>
+                                <td>{{acessorio.id}}</td>
+                                <td>{{acessorio.nome}}</td>
+                                <td class="alinharADireita">
+                                    <a href="admin/acessorios/edit/{{acessorio.id}}" class="btn btn-primary btn-rounded"
+                                        mdbRippled>
+                                        <i class="fas fa-pencil fa-sm"></i>
+                                    </a>
+                                    <button (click)="delete(acessorio)" class="btn btn-danger btn-rounded" mdbRippled>
+                                        <i class="fas fa-trash fa-sm"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

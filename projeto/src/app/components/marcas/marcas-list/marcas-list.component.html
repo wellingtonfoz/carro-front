@@ -1,0 +1,56 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 azul">
+
+            <div class="card">
+                <div class="card-body">
+
+                    <h2> <i class="fas fa-circle-notch fa-sm"></i> Cadastro de Marcas</h2><br>
+                    
+                    <div>
+                        
+                    </div>
+
+                    <div class="alinharADireita">
+                        <a href="admin/marcas/new" class="btn btn-success btn-rounded" mdbRippled>
+                            <i class="fas fa-plus fa-sm"></i> Novo
+                        </a>
+                    </div>
+
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (marca of lista; track $index) {
+                            <tr>
+                                <td>{{marca.id}}</td>
+                                <td>{{marca.nome}}</td>
+                                <td class="alinharADireita">
+                                    <a href="admin/marcas/edit/{{marca.id}}" class="btn btn-primary btn-rounded"
+                                        mdbRippled>
+                                        <i class="fas fa-pencil fa-sm"></i>
+                                    </a>
+                                    <button (click)="delete(marca)" class="btn btn-danger btn-rounded" mdbRippled>
+                                        <i class="fas fa-trash fa-sm"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

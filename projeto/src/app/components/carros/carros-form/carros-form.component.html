@@ -1,4 +1,4 @@
-<br />
+
 <div class="container">
   <div class="row">
 
@@ -6,17 +6,29 @@
       <div class="card">
         <div class="card-body centralizar">
 
-          <h2>Cadastro de carro</h2>
-          <br />
-
           <form #formulario="ngForm" (ngSubmit)="save()">
 
             <mdb-form-control>
-              <input mdbInput type="text" name="nome" class="form-control" [(ngModel)]="carro.nome" />
+              <input [(ngModel)]="carro.nome" mdbInput type="text" name="nome" class="form-control" />
               <label mdbLabel class="form-label" for="nome">Nome do carro:</label>
             </mdb-form-control>
 
             <br />
+            <div class="input-group mb-3">
+              @if(carro.marca){
+                <div class="border w-100 p-2 text-primary">{{carro.marca.nome}}</div>
+                <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                  Trocar Marca
+                </button>
+              }@else{
+                <div class="border w-100 p-2">Nenhuma marca selecionada!</div>
+                <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                  Buscar Marca
+                </button>
+              }
+             
+            </div>
+            <br>
 
             @if(carro.id > 0){
             <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
@@ -36,3 +48,20 @@
 
   </div>
 </div>
+
+
+
+
+<ng-template #modalMarcasList>
+
+  <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Listagem de Marcas</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+  </div>
+  <div class="modal-body">
+
+      <app-marcas-list [modoModal]="true" (meuEvento)="meuEventoTratamento($event)"></app-marcas-list>
+
+  </div>
+
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Marca } from '../../../models/marca';
 import { MarcaService } from '../../../services/marca.service';
 
@@ -12,6 +12,8 @@ import { MarcaService } from '../../../services/marca.service';
 export class MarcasListComponent {
 
   lista: Marca[] = [];
+  @Input("modoModal") modoModal: boolean = false;
+  @Output("meuEvento") meuEvento = new EventEmitter();
 
   marcaService = inject(MarcaService);
 
@@ -47,6 +49,11 @@ export class MarcasListComponent {
       });
 
     }
+  }
+
+
+  selecionar(marca: Marca){
+    this.meuEvento.emit(marca); //esse disparo vai acionar o método do FORM
   }
 
 

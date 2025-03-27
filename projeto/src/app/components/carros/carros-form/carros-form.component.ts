@@ -1,14 +1,17 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Carro } from '../../../models/carro';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarroService } from '../../../services/carro.service';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { Marca } from '../../../models/marca';
+import { MarcasListComponent } from '../../marcas/marcas-list/marcas-list.component';
 
 @Component({
   selector: 'app-carros-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule],
+  imports: [MdbFormsModule, FormsModule, MarcasListComponent],
   templateUrl: './carros-form.component.html',
   styleUrl: './carros-form.component.scss'
 })
@@ -20,6 +23,10 @@ export class CarrosFormComponent {
   rotaAtivida = inject(ActivatedRoute);
   roteador = inject(Router);
   carroService = inject(CarroService);
+
+  @ViewChild("modalMarcasList") modalMarcasList!: TemplateRef<any>; //referência ao template da modal
+  modalService = inject(MdbModalService); //para abrir a modal
+  modalRef!: MdbModalRef<any>; //vc conseguir fechar a modal depois
 
   constructor(){
     let id = this.rotaAtivida.snapshot.params['id'];
@@ -69,8 +76,17 @@ export class CarrosFormComponent {
         }
       });
 
-
     }
+  }
+
+
+  meuEventoTratamento(marca: Marca){
+    this.carro.marca = marca;
+    this.modalRef.close();
+  }
+
+  buscarMarca(){
+    this.modalRef = this.modalService.open(this.modalMarcasList, {modalClass: 'modal-xl'});
   }
 
 }

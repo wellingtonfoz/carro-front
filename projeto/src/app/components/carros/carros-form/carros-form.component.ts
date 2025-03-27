@@ -7,6 +7,7 @@ import { CarroService } from '../../../services/carro.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Marca } from '../../../models/marca';
 import { MarcasListComponent } from '../../marcas/marcas-list/marcas-list.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carros-form',
@@ -42,7 +43,7 @@ export class CarrosFormComponent {
         this.carro = carroRetornado;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
 
@@ -53,12 +54,12 @@ export class CarrosFormComponent {
       // UPDATE
       this.carroService.update(this.carro, this.carro.id).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/carros']);
           this.meuEvento.emit("OK");
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 
@@ -67,12 +68,12 @@ export class CarrosFormComponent {
       // SAVE
       this.carroService.save(this.carro).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/carros']);
           this.meuEvento.emit("OK");
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 

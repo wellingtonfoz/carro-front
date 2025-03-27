@@ -4,6 +4,7 @@ import { CarroService } from '../../../services/carro.service';
 import { FormsModule } from '@angular/forms';
 import { CarrosFormComponent } from '../carros-form/carros-form.component';
 import { MdbModalModule, MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-carros-list',
@@ -36,26 +37,36 @@ export class CarrosListComponent {
         this.lista = listaRetornada;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
   
   }
 
   delete(carro: Carro){
-    if(confirm('Deseja deletar isso aí?')){
 
-      this.carroService.deleteById(carro.id).subscribe({
-        next: (mensagem) => {
-          alert(mensagem);
-          this.findAll();
-        },
-        error: (erro) => {
-          alert(erro.error)
-        }
-      });
+    Swal.fire({
+      title: 'Deseja mesmo deleatr?',
+      showCancelButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    }
+        this.carroService.deleteById(carro.id).subscribe({
+          next: (mensagem) => {
+            Swal.fire(mensagem, '', 'success');
+            this.findAll();
+          },
+          error: (erro) => {
+            Swal.fire(erro.error, '', 'error');
+          }
+        });
+        
+      }
+    });
+      
+
   }
 
   findByNome(){
@@ -65,7 +76,7 @@ export class CarrosListComponent {
         this.lista = lista;
       },
       error: (erro) => {
-        alert(erro.error);
+        Swal.fire(erro.error, '', 'error');;
       }
     })
 

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Marca } from '../../../models/marca';
 import { MarcaService } from '../../../services/marca.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-marcas-list',
@@ -29,26 +30,35 @@ export class MarcasListComponent {
         this.lista = listaRetornada;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
   
   }
 
   delete(marca: Marca){
-    if(confirm('Deseja deletar isso aí?')){
 
-      this.marcaService.deleteById(marca.id).subscribe({
-        next: (mensagem) => {
-          alert(mensagem);
-          this.findAll();
-        },
-        error: (erro) => {
-          alert(erro.error)
-        }
-      });
+    Swal.fire({
+      title: 'Deseja mesmo deleatr?',
+      showCancelButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    }
+        this.marcaService.deleteById(marca.id).subscribe({
+          next: (mensagem) => {
+            Swal.fire(mensagem, '', 'success');
+            this.findAll();
+          },
+          error: (erro) => {
+            Swal.fire(erro.error, '', 'error');
+          }
+        });
+        
+      }
+    });
+
   }
 
 

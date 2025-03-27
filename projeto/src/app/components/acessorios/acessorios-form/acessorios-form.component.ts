@@ -4,6 +4,7 @@ import { Acessorio } from '../../../models/acessorio';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AcessorioService } from '../../../services/acessorio.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-acessorios-form',
@@ -34,7 +35,7 @@ export class AcessoriosFormComponent {
         this.acessorio = acessorioRetornado;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
 
@@ -45,11 +46,11 @@ export class AcessoriosFormComponent {
       // UPDATE
       this.acessorioService.update(this.acessorio, this.acessorio.id).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/acessorios']);
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 
@@ -58,11 +59,11 @@ export class AcessoriosFormComponent {
       // SAVE
       this.acessorioService.save(this.acessorio).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/acessorios']);
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 

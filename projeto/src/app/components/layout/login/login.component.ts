@@ -3,6 +3,7 @@ import { Login } from '../../../models/login';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent {
     if(this.login.username == 'admin' && this.login.password == 'admin'){
       this.router.navigate(['admin/dashboard']);
     }else
-      alert('Usuário ou senha incorretos!'); 
+      Swal.fire('Usuário ou senha incorretos!', '', 'error');
   }
 
   

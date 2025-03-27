@@ -4,6 +4,7 @@ import { Marca } from '../../../models/marca';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarcaService } from '../../../services/marca.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-marcas-form',
@@ -34,7 +35,7 @@ export class MarcasFormComponent {
         this.marca = marcaRetornado;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
 
@@ -45,11 +46,11 @@ export class MarcasFormComponent {
       // UPDATE
       this.marcaService.update(this.marca, this.marca.id).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/marcas']);
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 
@@ -58,11 +59,11 @@ export class MarcasFormComponent {
       // SAVE
       this.marcaService.save(this.marca).subscribe({
         next: (mensagem) => {
-          alert(mensagem);
+          Swal.fire(mensagem, '', 'success');
           this.roteador.navigate(['admin/marcas']);
         },
         error: (erro) => {
-          alert(erro.error)
+          Swal.fire(erro.error, '', 'error');
         }
       });
 

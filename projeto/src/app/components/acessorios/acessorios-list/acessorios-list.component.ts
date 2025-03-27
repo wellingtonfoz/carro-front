@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Acessorio } from '../../../models/acessorio';
 import { AcessorioService } from '../../../services/acessorio.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-acessorios-list',
@@ -27,26 +28,35 @@ export class AcessoriosListComponent {
         this.lista = listaRetornada;
       },
       error: (erro) => {
-        alert(erro.error)
+        Swal.fire(erro.error, '', 'error');
       }
     });
   
   }
 
   delete(acessorio: Acessorio){
-    if(confirm('Deseja deletar isso aí?')){
 
-      this.acessorioService.deleteById(acessorio.id).subscribe({
-        next: (mensagem) => {
-          alert(mensagem);
-          this.findAll();
-        },
-        error: (erro) => {
-          alert(erro.error)
-        }
-      });
+    Swal.fire({
+      title: 'Deseja mesmo deleatr?',
+      showCancelButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-    }
+        this.acessorioService.deleteById(acessorio.id).subscribe({
+          next: (mensagem) => {
+            Swal.fire(mensagem, '', 'success');
+            this.findAll();
+          },
+          error: (erro) => {
+            Swal.fire(erro.error, '', 'error');
+          }
+        });
+
+      }
+    });
+
   }
 
 

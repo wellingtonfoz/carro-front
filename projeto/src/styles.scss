@@ -3,6 +3,10 @@
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
 
 
+.swal2-container {
+    z-index: 99999;
+  }
+
 body{
     background-color: #c9c9c9;
 }

@@ -9,11 +9,13 @@ import { Marca } from '../../../models/marca';
 import { MarcasListComponent } from '../../marcas/marcas-list/marcas-list.component';
 import Swal from 'sweetalert2';
 import { MarcaService } from '../../../services/marca.service';
+import { AcessoriosListComponent } from '../../acessorios/acessorios-list/acessorios-list.component';
+import { Acessorio } from '../../../models/acessorio';
 
 @Component({
   selector: 'app-carros-form',
   standalone: true,
-  imports: [MdbFormsModule, FormsModule, MarcasListComponent],
+  imports: [MdbFormsModule, FormsModule, MarcasListComponent, AcessoriosListComponent],
   templateUrl: './carros-form.component.html',
   styleUrl: './carros-form.component.scss'
 })
@@ -30,6 +32,7 @@ export class CarrosFormComponent {
   marcaService = inject(MarcaService);
 
   @ViewChild("modalMarcasList") modalMarcasList!: TemplateRef<any>; //referência ao template da modal
+  @ViewChild("modalAcessoriosList") modalAcessoriosList!: TemplateRef<any>; //referência ao template da modal
   modalService = inject(MdbModalService); //para abrir a modal
   modalRef!: MdbModalRef<any>; //vc conseguir fechar a modal depois
 
@@ -109,8 +112,25 @@ export class CarrosFormComponent {
     this.modalRef.close();
   }
 
+  meuEventoTratamentoAcessorio(acessorio: Acessorio){
+    if(this.carro.acessorios == null)
+      this.carro.acessorios = [];
+
+    this.carro.acessorios.push(acessorio);
+    this.modalRef.close();
+  }
+
   buscarMarca(){
     this.modalRef = this.modalService.open(this.modalMarcasList, {modalClass: 'modal-xl'});
+  }
+
+  buscarAcessorios(){
+    this.modalRef = this.modalService.open(this.modalAcessoriosList, {modalClass: 'modal-xl'});
+  }
+
+  deletarAcessorio(acessorio: Acessorio){
+    let indice = this.carro.acessorios.findIndex(x => {return x.id == acessorio.id});
+    this.carro.acessorios.splice(indice,1);
   }
 
 }

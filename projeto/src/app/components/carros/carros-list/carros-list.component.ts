@@ -84,12 +84,12 @@ export class CarrosListComponent {
 
   new(){ //ABRIRRRRRRRRRRRRRRRRRR
     this.carroEdit = new Carro(); //limpando o carroEdit para um novo cadastro
-    this.modalRef = this.modalService.open(this.modalCarroForm);
+    this.modalRef = this.modalService.open(this.modalCarroForm, { modalClass: 'modal-xl'});
   }
 
   edit(carro: Carro){
     this.carroEdit = carro; //carregando o carroEdit com o carro clicado na tabela
-    this.modalRef = this.modalService.open(this.modalCarroForm);
+    this.modalRef = this.modalService.open(this.modalCarroForm, { modalClass: 'modal-xl'});
   }
 
   meuEventoTratamento(mensagem:any){

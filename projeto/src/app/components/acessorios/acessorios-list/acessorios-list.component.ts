@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Acessorio } from '../../../models/acessorio';
 import { AcessorioService } from '../../../services/acessorio.service';
 import Swal from 'sweetalert2';
@@ -15,6 +15,9 @@ export class AcessoriosListComponent {
 
   lista: Acessorio[] = [];
   pesquisa: string = "";
+
+  @Input("modoModal") modoModal: boolean = false;
+  @Output("meuEvento") meuEvento = new EventEmitter();
 
   acessorioService = inject(AcessorioService);
 
@@ -73,6 +76,10 @@ export class AcessoriosListComponent {
       }
     })
 
+  }
+
+  selecionar(acessorio: Acessorio){
+    this.meuEvento.emit(acessorio);
   }
 
 }

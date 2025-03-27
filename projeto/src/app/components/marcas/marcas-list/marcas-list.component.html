@@ -39,6 +39,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">NOME</th>
+                                <th scope="col">DESCRIÇÃO</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                             <tr>
                                 <td>{{marca.id}}</td>
                                 <td>{{marca.nome}}</td>
+                                <td>{{marca.descricao}}</td>
                                 <td class="alinharADireita">
                                     @if(!modoModal){
                                         <a href="admin/marcas/edit/{{marca.id}}" class="btn btn-primary btn-rounded"

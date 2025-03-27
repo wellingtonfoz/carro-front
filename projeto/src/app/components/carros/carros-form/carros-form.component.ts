@@ -8,6 +8,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { Marca } from '../../../models/marca';
 import { MarcasListComponent } from '../../marcas/marcas-list/marcas-list.component';
 import Swal from 'sweetalert2';
+import { MarcaService } from '../../../services/marca.service';
 
 @Component({
   selector: 'app-carros-form',
@@ -21,9 +22,12 @@ export class CarrosFormComponent {
   @Input("carro") carro: Carro = new Carro();
   @Output("meuEvento") meuEvento = new EventEmitter(); //ELE VAI PEGAR QUALQUER COISA E EMITIR
 
+  listaMarcas!: Marca[];
+
   rotaAtivida = inject(ActivatedRoute);
   roteador = inject(Router);
   carroService = inject(CarroService);
+  marcaService = inject(MarcaService);
 
   @ViewChild("modalMarcasList") modalMarcasList!: TemplateRef<any>; //referência ao template da modal
   modalService = inject(MdbModalService); //para abrir a modal
@@ -34,6 +38,7 @@ export class CarrosFormComponent {
     if(id){
       this.findById(id);
     }
+    this.findAllMarcas();
   }
 
   findById(id: number){
@@ -79,6 +84,24 @@ export class CarrosFormComponent {
 
     }
   }
+
+  findAllMarcas(){
+
+    this.marcaService.findAll().subscribe({
+      next: (lista) => {
+        this.listaMarcas = lista;
+      },
+      error: (erro) => {
+        Swal.fire(erro.error, '', 'error');
+      }
+    });
+
+  }
+
+  compareId(a: any, b: any) {
+    return a && b ? a.id === b.id : a === b;
+  }
+
 
 
   meuEventoTratamento(marca: Marca){

@@ -18,6 +18,12 @@
             </mdb-form-control>
 
             <br />
+            <mdb-form-control>
+              <input [(ngModel)]="acessorio.descricao" mdbInput type="text" name="descricao" class="form-control" />
+              <label mdbLabel class="form-label" for="descricao">Descrição:</label>
+            </mdb-form-control>
+            <br />
+
 
             @if(acessorio.id > 0){
             <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">

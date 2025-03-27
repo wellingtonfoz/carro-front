@@ -38,6 +38,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">NOME</th>
+                                <th scope="col">MARCA</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                             <tr>
                                 <td>{{carro.id}}</td>
                                 <td>{{carro.nome}}</td>
+                                <td>{{carro.marca?.nome}}</td>
                                 <td class="alinharADireita">
                                     <a (click)="edit(carro)" class="btn btn-primary btn-rounded" mdbRippled>
                                         <i class="fas fa-pencil fa-sm"></i>

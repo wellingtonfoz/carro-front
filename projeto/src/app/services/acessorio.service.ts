@@ -19,6 +19,13 @@ export class AcessorioService {
     return this.http.get<Acessorio[]>(this.API+'/findAll');
   }
 
+  findByNome(nome: string): Observable<Acessorio[]>{
+    let par = new HttpParams()
+    .set('nome',nome);
+    
+    return this.http.get<Acessorio[]>(this.API+'/findByNome', {params: par});
+  }
+
   findById(id: number): Observable<Acessorio>{
     return this.http.get<Acessorio>(this.API+'/findById/'+id);
   }

@@ -2,17 +2,20 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Marca } from '../../../models/marca';
 import { MarcaService } from '../../../services/marca.service';
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-marcas-list',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './marcas-list.component.html',
   styleUrl: './marcas-list.component.scss',
 })
 export class MarcasListComponent {
 
   lista: Marca[] = [];
+  pesquisa: string = "";
+
   @Input("modoModal") modoModal: boolean = false;
   @Output("meuEvento") meuEvento = new EventEmitter();
 
@@ -58,6 +61,20 @@ export class MarcasListComponent {
         
       }
     });
+
+  }
+
+
+  findByNome(){
+
+    this.marcaService.findByNome(this.pesquisa).subscribe({
+      next: (lista) => {
+        this.lista = lista;
+      },
+      error: (erro) => {
+        Swal.fire(erro.error, '', 'error');;
+      }
+    })
 
   }
 

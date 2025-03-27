@@ -19,6 +19,13 @@ export class MarcaService {
     return this.http.get<Marca[]>(this.API+'/findAll');
   }
 
+  findByNome(nome: string): Observable<Marca[]>{
+    let par = new HttpParams()
+    .set('nome',nome);
+    
+    return this.http.get<Marca[]>(this.API+'/findByNome', {params: par});
+  }
+
   findById(id: number): Observable<Marca>{
     return this.http.get<Marca>(this.API+'/findById/'+id);
   }

@@ -2,17 +2,19 @@ import { Component, inject } from '@angular/core';
 import { Acessorio } from '../../../models/acessorio';
 import { AcessorioService } from '../../../services/acessorio.service';
 import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-acessorios-list',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './acessorios-list.component.html',
   styleUrl: './acessorios-list.component.scss',
 })
 export class AcessoriosListComponent {
 
   lista: Acessorio[] = [];
+  pesquisa: string = "";
 
   acessorioService = inject(AcessorioService);
 
@@ -59,5 +61,18 @@ export class AcessoriosListComponent {
 
   }
 
+
+  findByNome(){
+
+    this.acessorioService.findByNome(this.pesquisa).subscribe({
+      next: (lista) => {
+        this.lista = lista;
+      },
+      error: (erro) => {
+        Swal.fire(erro.error, '', 'error');;
+      }
+    })
+
+  }
 
 }

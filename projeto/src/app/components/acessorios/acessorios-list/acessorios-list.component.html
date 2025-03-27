@@ -8,14 +8,24 @@
 
                     <h3> <i class="fas fa-archive fa-sm"></i> Cadastro de Acessórios</h3><br>
                     
-                    <div>
-                        
-                    </div>
+                    <div class="row">
 
-                    <div class="alinharADireita">
-                        <a href="admin/acessorios/new" class="btn btn-success btn-rounded" mdbRippled>
-                            <i class="fas fa-plus fa-sm"></i> Novo
-                        </a>
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <input (keyup)="findByNome()" [(ngModel)]="pesquisa" type="text" class="form-control"
+                                    placeholder="Digite parte do nome do acessório" aria-label="Recipient's username"
+                                    aria-describedby="button-addon2" />
+        
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="alinharADireita">
+                                <a href="admin/acessorios/new" class="btn btn-success btn-rounded" mdbRippled>
+                                    <i class="fas fa-plus fa-sm"></i> Novo
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
 
 

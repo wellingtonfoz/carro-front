@@ -19,13 +19,26 @@ export class LoginComponent {
   router = inject(Router);
 
 
-  logar(){
-    if(this.login.username == 'admin' && this.login.password == 'admin'){
+  logar() {
+    if (this.login.username == 'admin' && this.login.password == 'admin') {
+      this.gerarToast().fire({ icon: "success", title: "Seja bem-vindo!" });
       this.router.navigate(['admin/dashboard']);
-    }else
+    } else
       Swal.fire('Usuário ou senha incorretos!', '', 'error');
   }
 
-  
+  gerarToast() {
+    return Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+  }
 
 }

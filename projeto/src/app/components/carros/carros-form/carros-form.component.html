@@ -43,7 +43,7 @@
 
               <div class="col-6"><br>
                 <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="carro.marca">
-                  <option [value]="undefined">: Selecione</option>
+                  <option [value]="undefined">:: Outra forma de N para 1 aqui</option>
                   @for (marca of listaMarcas; track $index) {
                   <option [ngValue]="marca">{{marca.nome}}</option>
                   }

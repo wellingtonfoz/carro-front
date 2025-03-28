@@ -101,7 +101,7 @@ export class CarrosFormComponent {
 
   }
 
-  compareId(a: any, b: any) {
+  compareId(a: Marca, b: Marca) {
     return a && b ? a.id === b.id : a === b;
   }
 

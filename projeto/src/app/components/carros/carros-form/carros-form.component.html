@@ -7,46 +7,53 @@
 
           <form #formulario="ngForm" (ngSubmit)="save()">
 
-            <mdb-form-control>
-              <input required [(ngModel)]="carro.nome" mdbInput type="text" name="nome" class="form-control" />
-              <label mdbLabel class="form-label" for="nome">Nome do carro:</label>
-            </mdb-form-control>
-            <br />
+            <div class="row">
 
-            <mdb-form-control>
-              <input required [(ngModel)]="carro.modelo" mdbInput type="text" name="modelo" class="form-control" />
-              <label mdbLabel class="form-label" for="modelo">Modelo:</label>
-            </mdb-form-control>
-            <br />
+              <div class="col-6">
+                <mdb-form-control>
+                  <input required [(ngModel)]="carro.nome" mdbInput type="text" name="nome" class="form-control" />
+                  <label mdbLabel class="form-label" for="nome">Nome do carro:</label>
+                </mdb-form-control>
+              </div>
 
-            
-            <h5>Uma das formas de fazer N para 1</h5>
-            <div class="input-group mb-3">
-              @if(carro.marca){
-              <div class="border w-100 p-2 text-primary">{{carro.marca.nome}}</div>
-              <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
-                Trocar Marca
-              </button>
-              }@else{
-              <div class="border w-100 p-2">Nenhuma marca selecionada!</div>
-              <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
-                Buscar Marca
-              </button>
-              }
+              <div class="col-6">
+                <mdb-form-control>
+                  <input required [(ngModel)]="carro.modelo" mdbInput type="text" name="modelo" class="form-control" />
+                  <label mdbLabel class="form-label" for="modelo">Modelo:</label>
+                </mdb-form-control>
+              </div>
+
+              <div class="col-6"><br>
+                <div class="input-group mb-3">
+                  @if(carro.marca){
+                  <div class="border w-100 p-2 text-primary">{{carro.marca.nome}}</div>
+                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                    Trocar Marca
+                  </button>
+                  }@else{
+                  <div class="border w-100 p-2">Nenhuma marca selecionada!</div>
+                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                    Buscar Marca
+                  </button>
+                  }
+                </div>
+              </div>
+
+              <div class="col-6"><br>
+                <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="carro.marca">
+                  <option [value]="undefined">: Selecione</option>
+                  @for (marca of listaMarcas; track $index) {
+                    <option [ngValue]="marca">{{marca.nome}}</option>
+                  }
+                </select>
+              </div>
+
+
+
             </div>
 
-
-
-            <br />
-            <h5>Uma outra forma de fazer N para 1</h5>
-            <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="carro.marca">
-              <option [value]="undefined">: Selecione</option>
-              @for (marca of listaMarcas; track $index) {
-                <option [value]="marca">{{marca.nome}}</option>
-              }
-            </select>
-
-            <br>
+           
+          
 
             <button type="button" class="btn btn-primary" (click)="buscarAcessorios()">Buscar acessorios...</button>
             <table class="border table table-striped">

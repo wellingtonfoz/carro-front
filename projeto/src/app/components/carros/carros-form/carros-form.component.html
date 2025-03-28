@@ -27,12 +27,14 @@
                 <div class="input-group mb-3">
                   @if(carro.marca){
                   <div class="border w-100 p-2 text-primary">{{carro.marca.nome}}</div>
-                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple
+                    rippleColor="danger">
                     Trocar Marca
                   </button>
                   }@else{
                   <div class="border w-100 p-2">Nenhuma marca selecionada!</div>
-                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple rippleColor="danger">
+                  <button (click)="buscarMarca()" class="btn btn-secondary" type="button" mdbRipple
+                    rippleColor="danger">
                     Buscar Marca
                   </button>
                   }
@@ -43,7 +45,7 @@
                 <select [compareWith]="compareId" class="form-control" name="marcas" [(ngModel)]="carro.marca">
                   <option [value]="undefined">: Selecione</option>
                   @for (marca of listaMarcas; track $index) {
-                    <option [ngValue]="marca">{{marca.nome}}</option>
+                  <option [ngValue]="marca">{{marca.nome}}</option>
                   }
                 </select>
               </div>
@@ -52,10 +54,18 @@
 
             </div>
 
-           
-          
 
-            <button type="button" class="btn btn-primary" (click)="buscarAcessorios()">Buscar acessorios...</button>
+
+
+            <div class="row">
+              <div class="col-6 alinharAEsquerda">
+                <h5>Acessórios:</h5>
+              </div>
+              <div class="col-6 alinharADireita">
+                <button type="button" class="btn btn-secondary btn-rounded" (click)="buscarAcessorios()"><i
+                    class="fas fa-plus"></i></button>
+              </div>
+            </div>
             <table class="border table table-striped">
               <thead>
 
@@ -68,19 +78,24 @@
               </thead>
 
               <tbody>
-              
+
                 @for (acessorio of carro.acessorios; track $index) {
                 <tr>
                   <td>{{acessorio.nome}}</td>
                   <td>{{acessorio.descricao}}</td>
                   <td>
-                    <button class="btn btn-danger btn-rounded"
-                    type="button" (click)="deletarAcessorio(acessorio)">
-                    <i class="fas fa-trash fa-xs"></i>
-                  </button>
+                    <button class="btn btn-danger btn-rounded" type="button" (click)="deletarAcessorio(acessorio)">
+                      <i class="fas fa-trash fa-xs"></i>
+                    </button>
                   </td>
                 </tr>
-              }
+                }@empty {
+                <div class="alinharAEsquerda">
+                  <br><br>
+                  <h5>Nenhum acessório vinculado.</h5>
+                  <br><br>
+                </div>
+                }
 
               </tbody>
 

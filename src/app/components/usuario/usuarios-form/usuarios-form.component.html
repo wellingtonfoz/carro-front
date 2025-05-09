@@ -1,0 +1,60 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body centralizar">
+
+          <h3>Cadastro de usuario</h3>
+          <br />
+
+          <form #formulario="ngForm" (ngSubmit)="save()">
+
+            <mdb-form-control>
+              <input mdbInput required type="text" name="nomeee" class="form-control" [(ngModel)]="usuario.nomeCompleto" />
+              <label mdbLabel class="form-label" for="nomeee">Nome Completo:</label>
+            </mdb-form-control>
+
+            <br />
+            <mdb-form-control>
+              <input mdbInput required type="text" name="usernameeeee" class="form-control" [(ngModel)]="usuario.username" />
+              <label mdbLabel class="form-label" for="usernameeeee">Usuario:</label>
+            </mdb-form-control>
+
+            <br />
+          @if (!modoEdit) {
+            <mdb-form-control>
+              <input mdbInput required type="password" name="senha" class="form-control" [(ngModel)]="senha" />
+              <label mdbLabel class="form-label" for="senha">Senha:</label>
+            </mdb-form-control>
+
+            <br />
+            <mdb-form-control>
+              <input [(ngModel)]="senhaNovamente" mdbInput type="password" name="senhaCon" class="form-control" />
+              <label mdbLabel class="form-label" for="senhaCon">Repita a Senha:</label>
+            </mdb-form-control>
+            <br />
+
+          }
+
+            @if(usuario.id > 0){
+            <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+              <i class="fas fa-save fa-sm"></i> Atualizar
+            </button>
+            }@else {
+            <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+              <i class="fas fa-save fa-sm"></i> Salvar
+            </button>
+            }
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4"></div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 azul">
+
+            <div class="card">
+                <div class="card-body">
+
+                    @if(!modoModal){
+                        <h3> <i class="fas fa-circle-notch fa-sm"></i> Cadastro de Usuarios</h3><br>
+                    }
+
+                    <div class="row">
+
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <input (keyup)="findByNome()" [(ngModel)]="pesquisa" type="text" class="form-control"
+                                    placeholder="Digite parte do nome da usuario" aria-label="Recipient's username"
+                                    aria-describedby="button-addon2" />
+        
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            @if(loginService.hasRole('ADMIN')){
+                            @if(!modoModal){
+                                <div class="alinharADireita">
+                                    <a href="admin/usuarios/new" class="btn btn-success btn-rounded" mdbRippled>
+                                        <i class="fas fa-plus fa-sm"></i> Novo
+                                    </a>
+                                </div>
+                            }
+                        }
+                        </div>
+
+                    </div>
+
+
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NOME</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (usuario of lista; track $index) {
+                            <tr>
+                                <td>{{usuario.id}}</td>
+                                <td>{{usuario.username}}</td>
+                                <td class="alinharADireita">
+                                    @if(!modoModal){
+                                        <a href="admin/usuarios/edit/{{usuario.id}}" class="btn btn-primary btn-rounded"
+                                            mdbRippled>
+                                            <i class="fas fa-pencil fa-sm"></i>
+                                        </a>
+                                        <button (click)="delete(usuario)" class="btn btn-danger btn-rounded" mdbRippled>
+                                            <i class="fas fa-trash fa-sm"></i>
+                                        </button>
+                                    }@else{
+                                        <button (click)="selecionar(usuario)" class="btn btn-success btn-rounded" mdbRippled>
+                                           Selecionar
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

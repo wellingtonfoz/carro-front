@@ -9,7 +9,7 @@
         <div class="card-body centralizar">
           <h3>Sistema Xuxa</h3>
           <img src="imagens/cadeado.png" class="img-thumbnail">
-        </div>
+        </div><br>
       </div>
     </div>
 
@@ -32,7 +32,9 @@
           </mdb-form-control>
           <br>
 
-          <button (click)="logar()" type="button" class="btn btn-primary" mdbRipple>Entrar</button>
+          <button (click)="logar()" type="button" class="btn btn-primary" mdbRipple>Entrar</button><br><br>
+          <a [routerLink]="['/registre-se']" routerLinkActive="router-link-active" 
+          mdbRipple>Registre-se</a>
 
         </div>
       </div>

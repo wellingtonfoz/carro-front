@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Login } from '../../../auth/login';
 import { LoginService } from '../../../auth/login.service';
@@ -10,7 +10,7 @@ import { Usuario } from '../../../auth/usuario';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, MdbFormsModule],
+  imports: [FormsModule, MdbFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

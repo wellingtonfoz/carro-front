@@ -9,10 +9,14 @@ import { MarcasFormComponent } from './components/marcas/marcas-form/marcas-form
 import { AcessoriosFormComponent } from './components/acessorios/acessorios-form/acessorios-form.component';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
 import { guardGuard } from './auth/guard.guard';
+import { UsuariosListComponent } from './components/usuario/usuarios-list/usuarios-list.component';
+import { UsuariosFormComponent } from './components/usuario/usuarios-form/usuarios-form.component';
+import { AlterarSenhaComponent } from './components/usuario/alterar-senha/alterar-senha.component';
 
 export const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: 'full'},
     {path: "login", component: LoginComponent},
+    {path: "registre-se", component: UsuariosFormComponent},
     {path: "admin", component: PrincipalComponent, canActivate:[guardGuard], children:[
         {path: "dashboard", component: DashboardComponent},
         {path: "carros", component: CarrosListComponent},
@@ -24,5 +28,9 @@ export const routes: Routes = [
         {path: "acessorios", component: AcessoriosListComponent},
         {path: "acessorios/new", component: AcessoriosFormComponent},
         {path: "acessorios/edit/:id", component: AcessoriosFormComponent},
+        {path: "usuarios", component: UsuariosListComponent},
+        {path: "usuarios/new", component: UsuariosFormComponent},
+        {path: "usuarios/edit/:id", component: UsuariosFormComponent},
+        {path: "alterar-senha", component: AlterarSenhaComponent},
     ]}
 ];

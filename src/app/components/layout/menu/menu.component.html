@@ -30,10 +30,30 @@
           <a class="nav-link" href="/admin/acessorios">Acessórios</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/admin/usuarios">Usuários</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/login">Sair</a>
         </li>
       </ul>
       <!-- Left links -->
+
+
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-link px-3 me-2">
+          Login
+        </button>
+        <button type="button" class="btn btn-primary me-3">
+          Bem-vindo, {{loginService.getUsuarioLogado().username}}
+        </button>
+        <a
+          class="btn btn-success px-3"
+          (click)="modalAlterarSenha()"
+          role="button"
+          >Alterar Senha</a>
+      </div>
+
+    
 
     </div>
     <!-- Collapsible wrapper -->
@@ -41,3 +61,20 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+
+
+
+
+<ng-template #modalAltera>
+
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Alterar Senha</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+  </div>
+  <div class="modal-body">
+
+    <app-alterar-senha (meuEvento)="meuEventoTratamento($event)"></app-alterar-senha>
+
+  </div>
+
+</ng-template>

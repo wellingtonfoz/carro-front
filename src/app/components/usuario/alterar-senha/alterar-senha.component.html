@@ -1,0 +1,34 @@
+<br />
+<div class="container">
+  <div class="row">
+
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body centralizar">
+
+          <form #formulario="ngForm" (ngSubmit)="save()">
+
+            <mdb-form-control>
+              <input mdbInput required type="password" name="senha" class="form-control" [(ngModel)]="senha" />
+              <label mdbLabel class="form-label" for="senha">Senha:</label>
+            </mdb-form-control>
+
+            <br />
+            <mdb-form-control>
+              <input [(ngModel)]="senhaNovamente" mdbInput type="password" name="senhaCon" class="form-control" />
+              <label mdbLabel class="form-label" for="senhaCon">Repita a Senha:</label>
+            </mdb-form-control>
+            <br />
+
+            <button type="submit" [disabled]="!formulario.valid" class="btn btn-success btn-rounded">
+              <i class="fas fa-save fa-sm"></i> Alterar
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

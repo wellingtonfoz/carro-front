@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Acessorio } from '../models/acessorio';
+import { environment } from '../../environments/environment';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +12,13 @@ export class AcessorioService {
 
   http = inject(HttpClient);
 
-  API = 'http://localhost:8080/api/acessorio';
+  API = environment.SERVIDOR+'/api/acessorio';
 
   constructor() { }
 
 
-  findAll(): Observable<Acessorio[]>{
-    return this.http.get<Acessorio[]>(this.API+'/findAll');
+  findAll(numPage: number, qtidPorPagina: number): Observable<Page>{
+    return this.http.get<Page>(this.API+'/findAll/'+numPage+'/'+qtidPorPagina);
   }
 
   findByNome(nome: string): Observable<Acessorio[]>{

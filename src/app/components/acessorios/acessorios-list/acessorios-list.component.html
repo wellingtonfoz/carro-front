@@ -30,6 +30,19 @@
 
                     </div>
 
+                    <ngb-pagination 
+                    (pageChange)="trocarPagina($event)" 
+                    [pageSize]="pagina.size" 
+                    [collectionSize]="pagina.totalElements" 
+                    [(page)]="numPage" 
+                    [boundaryLinks]="true" />
+
+                    <select (change)="findAll()" class="form-control" [(ngModel)]="qtidPorPagina" name="adkfj" id="">
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="1000">1000</option>
+                    </select>
+
 
                     <table class="table table-striped">
 

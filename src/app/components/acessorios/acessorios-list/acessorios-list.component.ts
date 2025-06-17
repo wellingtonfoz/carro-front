@@ -3,17 +3,24 @@ import { Acessorio } from '../../../models/acessorio';
 import { AcessorioService } from '../../../services/acessorio.service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { Page } from '../../../models/page';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-acessorios-list',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPaginationModule],
   templateUrl: './acessorios-list.component.html',
   styleUrl: './acessorios-list.component.scss',
 })
 export class AcessoriosListComponent {
 
   lista: Acessorio[] = [];
+  pagina: Page = new Page();
+  numPage: number = 1;
+  qtidPorPagina: number = 5;
+
+
   pesquisa: string = "";
 
   @Input("modoModal") modoModal: boolean = false;
@@ -28,9 +35,10 @@ export class AcessoriosListComponent {
 
   findAll(){
    
-    this.acessorioService.findAll().subscribe({
-      next: (listaRetornada) => {
-        this.lista = listaRetornada;
+    this.acessorioService.findAll(this.numPage, this.qtidPorPagina).subscribe({
+      next: (page) => {
+        this.lista = page.content;
+        this.pagina = page;
       },
       error: (erro) => {
         Swal.fire(erro.error, '', 'error');
@@ -80,6 +88,11 @@ export class AcessoriosListComponent {
 
   selecionar(acessorio: Acessorio){
     this.meuEvento.emit(acessorio);
+  }
+
+  trocarPagina(pageClicada: any){
+    this.numPage = pageClicada;
+    this.findAll();
   }
 
 }
